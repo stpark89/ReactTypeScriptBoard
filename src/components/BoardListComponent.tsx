@@ -3,8 +3,11 @@ import BoardVo, { create as createBoardList } from "../vo/BoardVo";
 import { useSelector } from "react-redux";
 import { RootState } from "../modules";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
 //{boardList.map(v => <td>{v.id}</td><td>{v.title}</td><td>{v.info}</td><td>{v.writeUserId}</td><td>{v.writeDtm}</td>)}
+
+const writeUserId: string = "stpark89";
 
 /**
 {todoItemList.map(v => (
@@ -71,6 +74,11 @@ const BoardListComponent = () => {
         >
           등록
         </button>
+        <Link to={`/selectMyBoard/${writeUserId}`}>
+          <button type="button" className="btn btn-info ml-4">
+            내글보기
+          </button>
+        </Link>
       </div>
     </div>
   );

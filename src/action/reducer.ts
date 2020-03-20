@@ -1,5 +1,6 @@
 import BoardVo, { create as createBoardVo } from "../vo/BoardVo";
 import { BOARD_ACTION, BOARD_ACTION_TYPE } from "./Action";
+import BoardListComponent from "../components/BoardListComponent";
 
 export interface boardState {
   boardList: BoardVo[];
@@ -9,9 +10,9 @@ const initialBoardState: boardState = {
   boardList: [
     {
       id: 1,
-      title: "제목입니다.",
-      info: "내용이 들어와요",
-      writeUserId: "stpark89",
+      title: "공지사항 ( ADMIN ) ",
+      info: "Admin 이 쓴 글입니다.",
+      writeUserId: "ADMIN",
       writeDtm: new Date()
     }
   ]
@@ -38,10 +39,16 @@ const BOARD_SWITCH = (
 
     case BOARD_ACTION_TYPE.MODIFY_BOARD:
       console.log("MODIFY_BOARD 호출");
-      console.log(state.boardList);
-      console.log(action.payload);
-      console.log("데이터확인 END ");
       return { boardList: action.payload };
+    case BOARD_ACTION_TYPE.DELETE_MYBOARD:
+      const tmpTotalArray: BoardVo[] = [...state.boardList];
+
+      // 배열 2개가 있는데,  선택한 id 가 넘어오는 배열, 전체 담겨져있는 배열
+      // 전체에서 선택한 배열 데이터를 빼야함.
+      action.payload.map(v => {
+        delete tmpTotalArray[v.id - 1];
+      });
+      return { boardList: tmpTotalArray };
 
     default:
       return state;

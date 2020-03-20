@@ -7,7 +7,8 @@ export enum BOARD_ACTION_TYPE {
   SELECT_BOARD = "board/SELECT_BOARD",
   WRITE_BOARD = "board/WRITE_BOARD",
   DETAIL_BOARD = "board/DETAIL_BOARD",
-  MODIFY_BOARD = "board/MODIFY_BOARD"
+  MODIFY_BOARD = "board/MODIFY_BOARD",
+  DELETE_MYBOARD = "board/DELETE_MYBOARD"
 }
 
 interface selectBoardAction {
@@ -30,11 +31,17 @@ interface modifyBoardAction {
   payload: BoardVo[];
 }
 
+interface deleteMyBoardAction {
+  type: BOARD_ACTION_TYPE.DELETE_MYBOARD;
+  payload: BoardVo[];
+}
+
 export type BOARD_ACTION =
   | selectBoardAction
   | writeBoardAction
   | selectDetailBoardAction
-  | modifyBoardAction;
+  | modifyBoardAction
+  | deleteMyBoardAction;
 
 // 조회
 export const selectBoard = () =>
@@ -50,5 +57,10 @@ export const detailBoard = (detail: BoardVo) =>
 
 // 수정
 export const modifyBoard = createAction(BOARD_ACTION_TYPE.MODIFY_BOARD)<
+  BoardVo[]
+>();
+
+// 내글 삭제
+export const deleteMyBoard = createAction(BOARD_ACTION_TYPE.DELETE_MYBOARD)<
   BoardVo[]
 >();

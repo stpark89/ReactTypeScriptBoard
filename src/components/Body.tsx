@@ -4,6 +4,7 @@ import BoardListComponent from "./BoardListComponent";
 import BoardWriteComponent from "./BoardWriteComponent";
 import BoardDetailComponent from "./BoardDetailComponent";
 import BoardModifyComponent from "./BoardModifyComponent";
+import BoardMyComponent from "./BoardMyComponent";
 
 const Body: FunctionComponent = () => {
   /**
@@ -16,6 +17,7 @@ const Body: FunctionComponent = () => {
       <Route path="/boardWrite" exact={true} component={BoardWriteComponent} />
       <Route path="/boardDetail/:id" component={BoardDetailComponent} />
       <Route path="/boardModify/:id" component={BoardModifyComponent} />
+      <Route path="/selectMyBoard/:writeUserId" component={BoardMyComponent} />
     </Router>
   );
 };
