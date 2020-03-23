@@ -1,6 +1,12 @@
 import BoardVo, { create as createBoardVo } from "../vo/BoardVo";
-import { BOARD_ACTION, BOARD_ACTION_TYPE } from "./Action";
-import BoardListComponent from "../components/BoardListComponent";
+import {
+  BOARD_ACTION,
+  BOARD_ACTION_TYPE,
+  LOGIN_ACTION,
+  LOGIN_ACTION_TYPE
+} from "./Action";
+import LoginVo, { create as createLoginVo } from "../vo/LoginVo";
+import { Switch } from "react-router";
 
 export interface boardState {
   boardList: BoardVo[];
@@ -56,3 +62,25 @@ const BOARD_SWITCH = (
 };
 
 export default BOARD_SWITCH;
+
+export interface loginState {
+  loginVo: LoginVo;
+}
+
+const initialLoginState: loginState = {
+  loginVo: createLoginVo({ userId: "", pwd: "" })
+};
+
+export const LOGIN_SWITCH = (
+  state: loginState = initialLoginState,
+  action: LOGIN_ACTION
+) => {
+  switch (action.type) {
+    case LOGIN_ACTION_TYPE.LOGIN:
+      return {
+        login: createLoginVo(action.payload)
+      };
+    default:
+      return state;
+  }
+};

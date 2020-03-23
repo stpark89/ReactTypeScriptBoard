@@ -15,6 +15,7 @@ const BoardMyComponent = () => {
   const [deleteArray, setDeleteArray] = useState<BoardVo[]>([]);
 
   const routerParam = useParams<paramInter>();
+  /**
   const myBoardList = useSelector(
     (state: RootState) => state.board.boardList
   ).filter(v => v.writeUserId === routerParam.writeUserId);
@@ -25,7 +26,7 @@ const BoardMyComponent = () => {
     const filterArray: BoardVo[] = myBoardList.filter(v => v.id === chekedId);
     setDeleteArray([...deleteArray, filterArray[0]]);
   };
-
+   */
   const deleteMySubmit = () => {
     console.log("삭제버튼 눌렀을때 ---");
     console.log(deleteArray);
@@ -49,7 +50,31 @@ const BoardMyComponent = () => {
           </tr>
         </thead>
         <tbody>
-          {myBoardList.length > 0 ? (
+          <tr>
+            <td colSpan={6}>굿</td>
+          </tr>
+          ) : (
+          <tr>
+            <td colSpan={6}>등록된 글이 없습니다.</td>
+          </tr>
+          )}
+        </tbody>
+      </table>
+
+      <button className="btn btn-danger" onClick={deleteMySubmit}>
+        삭제
+      </button>
+      <Link to={"/"}>
+        <button className="btn btn-info ml-4">목록</button>
+      </Link>
+    </div>
+  );
+};
+
+export default BoardMyComponent;
+
+/**
+ *  {myBoardList.length > 0 ? (
             myBoardList.map(v => (
               <tr key={v.id}>
                 <td>
@@ -67,22 +92,4 @@ const BoardMyComponent = () => {
                 <td>{v.writeDtm.toString()}</td>
               </tr>
             ))
-          ) : (
-            <tr>
-              <td colSpan={6}>등록된 글이 없습니다.</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-
-      <button className="btn btn-danger" onClick={deleteMySubmit}>
-        삭제
-      </button>
-      <Link to={"/"}>
-        <button className="btn btn-info ml-4">목록</button>
-      </Link>
-    </div>
-  );
-};
-
-export default BoardMyComponent;
+ */

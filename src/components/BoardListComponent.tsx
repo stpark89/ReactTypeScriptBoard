@@ -21,7 +21,10 @@ const writeUserId: string = "stpark89";
 
    */
 const BoardListComponent = () => {
-  const boardList = useSelector((state: RootState) => state.board.boardList);
+  const boardList = useSelector(
+    (state: RootState) => state.BOARD_SWITCH.boardList
+  );
+
   const router = useHistory();
 
   const locationButton = () => {

@@ -1,6 +1,7 @@
 import { createAction } from "typesafe-actions";
 
 import BoardVo from "../vo/BoardVo";
+import LoginVo from "../vo/LoginVo";
 
 // Action Type
 export enum BOARD_ACTION_TYPE {
@@ -64,3 +65,18 @@ export const modifyBoard = createAction(BOARD_ACTION_TYPE.MODIFY_BOARD)<
 export const deleteMyBoard = createAction(BOARD_ACTION_TYPE.DELETE_MYBOARD)<
   BoardVo[]
 >();
+
+// Action Type
+export enum LOGIN_ACTION_TYPE {
+  LOGIN = "login/LOGIN"
+}
+
+interface loginAction {
+  type: LOGIN_ACTION_TYPE.LOGIN;
+  payload: LoginVo;
+}
+
+export type LOGIN_ACTION = loginAction;
+
+// 로그인
+export const login = createAction(LOGIN_ACTION_TYPE.LOGIN)<LoginVo>();

@@ -16,7 +16,9 @@ const BoardWriteComponent = () => {
   // 내용
   const [info, setInfo] = useState<string>("");
 
-  const boardList = useSelector((state: RootState) => state.board.boardList);
+  const boardList = useSelector(
+    (state: RootState) => state.BOARD_SWITCH.boardList
+  );
 
   const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.currentTarget.value);

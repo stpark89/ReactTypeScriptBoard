@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
-import BOARD_SWITCH from "../action/reducer";
+import BOARD_SWITCH, { LOGIN_SWITCH } from "../action/reducer";
 
 // RootReducer 생성
 
 // 내가 만들었던  action swich 하는 Function
-const rootReducer = combineReducers({ board: BOARD_SWITCH });
+const rootReducer = combineReducers({ BOARD_SWITCH, LOGIN_SWITCH });
 
 export default rootReducer;
 

@@ -15,14 +15,14 @@ const BoardModifyComponent = () => {
   const his = useHistory();
 
   // 전체 리스트
-  const boardState = useSelector<RootState, boardState>(
-    (state: RootState) => state.board
+  const boardState = useSelector<RootState, BoardVo[]>(
+    (state: RootState) => state.BOARD_SWITCH.boardList
   );
 
   // 넘어온 파라미터를 받음.
   const routeParams = useParams<paramInter>();
   const detailVo =
-    boardState.boardList.find(
+    boardState.find(
       e => e.id === Number.parseInt(routeParams.id, 10) // 두번째 인자는 10진법
     ) ||
     createBoardVo({
@@ -56,8 +56,8 @@ const BoardModifyComponent = () => {
       writeDtm: new Date()
     });
 
-    const index = boardState.boardList.findIndex(e => e.id === detailVo.id);
-    const modifyBoardList: BoardVo[] = boardState.boardList;
+    const index = boardState.findIndex(e => e.id === detailVo.id);
+    const modifyBoardList: BoardVo[] = boardState;
     modifyBoardList[index] = modifyBoardVo;
     dispatch(modifyBoard(modifyBoardList));
     his.push("/");
