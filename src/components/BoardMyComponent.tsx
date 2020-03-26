@@ -50,6 +50,7 @@ const BoardMyComponent = () => {
           </tr>
         </thead>
         <tbody>
+          (
           <tr>
             <td colSpan={6}>굿</td>
           </tr>
@@ -57,7 +58,7 @@ const BoardMyComponent = () => {
           <tr>
             <td colSpan={6}>등록된 글이 없습니다.</td>
           </tr>
-          )}
+          )
         </tbody>
       </table>
 

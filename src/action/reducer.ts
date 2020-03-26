@@ -74,11 +74,11 @@ const initialLoginState: loginState = {
 export const LOGIN_SWITCH = (
   state: loginState = initialLoginState,
   action: LOGIN_ACTION
-) => {
+): loginState => {
   switch (action.type) {
     case LOGIN_ACTION_TYPE.LOGIN:
       return {
-        login: createLoginVo(action.payload)
+        loginVo: createLoginVo(action.payload)
       };
     default:
       return state;
