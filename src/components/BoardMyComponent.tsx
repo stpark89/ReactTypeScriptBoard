@@ -15,9 +15,9 @@ const BoardMyComponent = () => {
   const [deleteArray, setDeleteArray] = useState<BoardVo[]>([]);
 
   const routerParam = useParams<paramInter>();
-  /**
+
   const myBoardList = useSelector(
-    (state: RootState) => state.board.boardList
+    (state: RootState) => state.BOARD_SWITCH.boardList
   ).filter(v => v.writeUserId === routerParam.writeUserId);
 
   // 체크박스 클릭시, 스테이트에 담아놓고 삭제 버튼 누르면 전달
@@ -26,7 +26,7 @@ const BoardMyComponent = () => {
     const filterArray: BoardVo[] = myBoardList.filter(v => v.id === chekedId);
     setDeleteArray([...deleteArray, filterArray[0]]);
   };
-   */
+
   const deleteMySubmit = () => {
     console.log("삭제버튼 눌렀을때 ---");
     console.log(deleteArray);
@@ -50,15 +50,24 @@ const BoardMyComponent = () => {
           </tr>
         </thead>
         <tbody>
-          (
-          <tr>
-            <td colSpan={6}>굿</td>
-          </tr>
+          {myBoardList.length <= 0 ? (
+            <tr>
+              <td colSpan={6}>등록된 내용이 없습니다.</td>
+            </tr>
           ) : (
-          <tr>
-            <td colSpan={6}>등록된 글이 없습니다.</td>
-          </tr>
-          )
+            myBoardList.map(v => (
+              <tr>
+                <td>
+                  <input type="checkbox" value={v.id}></input>
+                </td>
+                <td>{v.id}</td>
+                <td>{v.title}</td>
+                <td>{v.info}</td>
+                <td>{v.writeUserId}</td>
+                <td>{v.writeDtm.toString()}</td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
 
